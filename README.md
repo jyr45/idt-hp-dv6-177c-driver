@@ -15,3 +15,7 @@ Revert: `pnputil /delete-driver oemXX.inf /uninstall /force`, `bcdedit /set test
 "IDT177C Test Signing" cert in `certlm.msc`.
 
 Binaries are property of HP / IDT (now Renesas); redistributed unmodified apart from the two text files above.
+
+## Quick install (release zip)
+Download `IDT-177C-installer.zip` from Releases, extract, run `instalar.cmd` (it asks for admin). First run enables test-signing and asks you to reboot; run it again after rebooting.
+
