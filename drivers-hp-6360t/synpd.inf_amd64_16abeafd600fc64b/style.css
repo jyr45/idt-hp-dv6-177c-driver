@@ -1,0 +1,59 @@
+body {
+	font-family: Arial, sans-serif;
+	width: 700px;
+	padding: 30px 0px 30px 0px;
+	margin: auto;
+}
+li {
+	padding: 2px 0px 2px 0px;
+}
+hr {
+	background-color: #000;
+	height: 1px;
+	border: 0px;
+}
+#header {
+	color: #403B31;
+}
+#header_l {
+	width: 270px;
+	float: left;
+}
+#header_r {
+	padding-top: 4px;
+	font-weight: bold;
+	font-size: 32px;
+}
+#intro {
+	margin-top: 30px;
+}
+.feature {
+	margin: 30px 0px 30px 0px;
+}
+.feature_l {
+	width: 240px;
+	float: left;
+}
+.feature_l_title {
+	font-weight: bold;
+	padding-bottom: 6px;
+}
+.feature_r {
+	width: 430px;
+	float: right;
+	padding-top: 10px;
+}
+#pagebreak {
+	text-align:center;
+	font-weight: bold;
+	font-style: italic;
+}
+.pointer {
+	cursor: pointer;
+}
+.dialog_content {
+	text-align: center;
+}
+.dialog_content ol {
+	text-align: left;
+}

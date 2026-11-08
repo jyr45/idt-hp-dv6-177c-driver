@@ -1,0 +1,36 @@
+
+@echo off
+
+if "%1" == "" start "" /min "%~f0" MINIMIZE && exit
+
+reg query HKLM\Software\Synaptics\SynTP > nul 2>&1
+if %ErrorLevel% == 0 goto END
+
+del /f /q "%USERPROFILE%\Desktop\ForcePad Settings*.lnk" > nul 2>&1
+del /f /q "%USERPROFILE%\Desktop\ForcePad User Guide*.lnk" > nul 2>&1
+del /f /q "%USERPROFILE%\Desktop\ForcePad Tutorial*.lnk" > nul 2>&1
+
+reg query HKCU\Software\Synaptics > nul 2>&1
+if %ErrorLevel% == 1 goto END
+
+chcp 65001 > nul 2>&1
+reg query HKCU\Software\Synaptics\SynTPEnh\ShortcutConfig | FindStr -v REG_DWORD | FindStr -i Shortcut | FindStr REG_ > "%temp%\SynShortcuts.txt"
+
+for /F "eol=/ tokens=1,2* delims=:" %%i in (%temp%\SynShortcuts.txt) do (
+  if exist "%SystemDrive%%%j" del /f /q "%SystemDrive%%%j" > nul 2>&1
+)
+
+reg delete HKCU\Software\Synaptics\SynTP /f > nul 2>&1
+reg delete HKCU\Software\Synaptics\SynTPCpl /f > nul 2>&1
+reg delete HKCU\Software\Synaptics\SynOSDCpl /f > nul 2>&1
+reg delete HKCU\Software\Synaptics\SynTPEnh /f > nul 2>&1
+reg delete HKCU\Software\Synaptics\SynTPPlugIns /f > nul 2>&1
+reg delete HKCU\Software\Synaptics\Persistent /f > nul 2>&1
+
+reg query HKCU\Software\Synaptics | FindStr -i Synaptics  > nul 2>&1
+if %ErrorLevel% == 0 goto END
+
+reg delete HKCU\Software\Synaptics /f > nul 2>&1
+
+:END
+del /f /q "%~f0" && exit
