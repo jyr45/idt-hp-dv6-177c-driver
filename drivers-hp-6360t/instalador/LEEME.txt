@@ -1,0 +1,34 @@
+DRIVERS HP 6360t (ProBook 6360b) - Windows 11 / 10 de 64 bits
+=============================================================
+
+COMO USAR
+  1. Extrae TODO el zip en una carpeta (no ejecutes desde dentro del zip).
+  2. Doble clic en  instalar_todos.cmd  (pide permisos de administrador).
+  3. Reinicia al terminar.
+
+Para ver que haria sin instalar nada (en PowerShell, en esta carpeta):
+  powershell -ExecutionPolicy Bypass -File .\instalar_todos.ps1 -SoloProbar
+
+QUE INSTALA  (carpeta drivers\)
+  Video Intel HD Graphics 3000 ........ 9.17.10.4459
+  Touchpad Synaptics .................. 19.0.12.0
+  Ethernet Intel 82579V ............... 12.10.29.0
+  Chipset Intel 6 Series (3 paquetes) . 10.1.1.38
+  Intel Management Engine (HECI) ...... 11.0.0.1157
+  Lector de tarjetas JMicron .......... 1.0.76.1
+  Sensor HP Mobile Data Protection .... 4.2.9.1
+
+AUDIO IDT PARCHEADO (carpeta audio-IDT-177C\)
+  Opcional: el script pregunta. Hace funcionar el LED del boton de silencio.
+  Requiere el "modo de prueba" de firma (bcdedit /set testsigning on), por lo
+  que la primera vez activa el modo, pide REINICIAR y hay que ejecutar
+  instalar_todos.cmd otra vez y responder S al audio.
+
+SEGURIDAD
+  - Crea un punto de restauracion antes de instalar.
+  - Guarda un registro (instalacion_*.log) en esta carpeta.
+  - Para deshacer un driver: pnputil /enum-drivers  y
+    pnputil /delete-driver oemNN.inf /uninstall /force
+
+Son binarios de sus fabricantes (Intel, Synaptics, IDT, JMicron, HP) con sus
+licencias originales. Pensado para la HP 6360t; en otro equipo el script avisa.
